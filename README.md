@@ -1,2 +1,3 @@
 # Projeto_HelpDesk
-[![Diagrama de Sequencia]](file:///C:/Users/evely/Downloads/Diagrama%20sem%20nome.drawio.pdf)](file:///C:/Users/evely/Downloads/Diagrama%20sem%20nome.drawio.pdf)
+
+[Diagrama.de.Classe (1).pdf](https://github.com/user-attachments/files/32544798/Diagrama.de.Classe.1.pdf)
