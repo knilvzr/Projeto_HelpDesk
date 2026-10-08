@@ -29,10 +29,14 @@ public class Chamado {
         this.titulo = titulo;
         this.descricao = descricao;
         this.prioridade = prioridade;
-        this.statusChamado = Status.aberto;
         this.dataAbertura = LocalDateTime.now();
         this.historico = new ArrayList<>();
         this.cliente = cliente;
+    }
+    
+    
+    public List<Atendimento> getHistorico() {
+        return historico;
     }
     
     
@@ -94,26 +98,28 @@ public class Chamado {
     }
     
     public void atribuirTecnico(Tecnico tecnico){ 
-        if (statusChamado == Status.aberto) {
-            this.tecnico = tecnico;
-            this.statusChamado = Status.em_atendiento;
+        if (statusChamado != Status.aberto) {
             System.out.println(
-                "Chamado atribuído ao técnico com sucesso."
-            );
-        } else {
-            System.out.println(
-                "Não é possível assumir o chamado, pois ele não está ABERTO."
+            "Não é possível assumir o chamado, pois ele não está ABERTO."
             );
         }
+        if (tecnico == null ){
+            System.out.println(
+            "Não é possível assumir o chamado"
+            );
+        } 
+        else {
+            this.tecnico = tecnico;
+            alterarStatus(Status.em_atendiento);
+        }
+     
     }     
   
     public void alterarStatus(Status statusChamado){
         this.statusChamado = statusChamado;
         
     }
-    public boolean estaAberto() {
-        return statusChamado == Status.aberto;
-    }
+
      public void registrarAtendimento(Atendimento atendimento){  
          historico.add(atendimento);
     }
@@ -124,11 +130,13 @@ public class Chamado {
                 "Não é possível encerrar o chamado sem atendimento."
             );
 
-        } else {
-            this.statusChamado = Status.encerrado;
-            this.dataEncerramento = LocalDateTime.now();
-            System.out.println("Chamado encerrado com sucesso");
-        }   
+        } else {                      
+                this.dataEncerramento = LocalDateTime.now();
+                alterarStatus(Status.encerrado);
+                System.out.println("Chamado encerrado com sucesso, data de encerramento: "+dataEncerramento);
+
+                    }
+                  
      }
 } 
     
