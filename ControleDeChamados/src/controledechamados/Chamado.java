@@ -120,7 +120,7 @@ public class Chamado {
         
     }
 
-     public void registrarAtendimento(Atendimento atendimento){  
+    public void registrarAtendimento(Atendimento atendimento){  
          historico.add(atendimento);
     }
     
@@ -134,6 +134,7 @@ public class Chamado {
                 this.dataEncerramento = LocalDateTime.now();
                 alterarStatus(Status.encerrado);
                 System.out.println("Chamado encerrado com sucesso, data de encerramento: "+dataEncerramento);
+                registrarAtendimento(Atendimento.Registrar(String descricao, Tecnico tecnico));
 
                     }
                   
